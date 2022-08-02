@@ -5,11 +5,6 @@
       <main class="col-12 col-lg-9">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-12">
-              <h1>{{ title }}</h1>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-9 text-left">
               <h2>Trends</h2>
             </div>
@@ -105,13 +100,13 @@
           </div>
         </div>
       </main>
-      <aside class="col-12 col-lg-3">
+      <aside class="col-12 col-lg-3 mt-3 mt-lg-0">
         <div class="card">
           <div class="card-header">Categories</div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Action</li>
-            <li class="list-group-item">Drama</li>
-            <li class="list-group-item">Thriller</li>
+            <li class="list-group-item" v-for="genre in genres" :key="genre" :v-if="genres">
+              {{ genre.name }}
+            </li>
           </ul>
         </div>
       </aside>
@@ -120,15 +115,16 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapState } from 'vuex'
 
 export default {
   name: "HomeView",
-  data() {
-    return {
-      msg: "Hello Vue!",
-    };
+  computed: {
+    ...mapState(['genres'])
   },
+  mounted() {
+    this.$store.dispatch("fetchGenres");
+  }
 };
 </script>
 
