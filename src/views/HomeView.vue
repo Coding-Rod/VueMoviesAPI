@@ -22,10 +22,11 @@
               
               <div class="carousel-inner">
                 <div class="carousel-item fill" :class="index==0?'active':''" v-for="(movie, index) in getFirstThreeMovies" :key="movie">
-                  <img :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path">
+                  <img v-if="screenwidth >= 763" :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path">
+                  <img v-else :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
                   <div class="carousel-caption movie-description">
                     <h5>First slide label</h5>
-                    <p class="d-none d-md-block">Some representative placeholder content for the first slide.</p>
+                    <p>Some representative placeholder content for the first slide.</p>
                   </div>
                 </div>
               </div>
@@ -65,6 +66,11 @@ import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "HomeView",
+  data() {
+    return {
+      screenwidth: 0,
+    }
+  },
   computed: {
     ...mapState(["genres", "movies"]),
     ...mapGetters(["getFirstThreeMovies"])
@@ -72,6 +78,10 @@ export default {
   mounted() {
     this.$store.dispatch("fetchGenres");
     this.$store.dispatch("fetchTopMovies");
+    this.screenwidth = parseInt(window.screen.availWidth);
+    window.addEventListener("resize", () => {
+      this.screenwidth = parseInt(window.screen.availWidth);
+    })
   },
 };
 </script>
