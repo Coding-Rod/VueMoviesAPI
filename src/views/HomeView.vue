@@ -10,90 +10,31 @@
             </div>
             <div class="col-3">
               <router-link class="btn btn-primary" to="/trends"
-                >Discover more</router-link
-              >
+                >Discover more
+              </router-link>
             </div>
-            <div
-              id="carouselExampleDark"
-              class="carousel carousel-dark slide"
-              data-bs-ride="carousel"
-            >
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
               <div class="carousel-indicators">
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleDark"
-                  data-bs-slide-to="0"
-                  class="active"
-                  aria-current="true"
-                  aria-label="Slide 1"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleDark"
-                  data-bs-slide-to="1"
-                  aria-label="Slide 2"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleDark"
-                  data-bs-slide-to="2"
-                  aria-label="Slide 3"
-                ></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
+              
               <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000">
-                  <img src="https://wallpapercave.com/wp/wp4074461.jpg" class="d-block w-100" alt="Venom" />
-                  <div class="carousel-caption d-none d-md-block movie-description">
+                <div class="carousel-item fill" :class="index==0?'active':''" v-for="(movie, index) in getFirstThreeMovies" :key="movie">
+                  <img :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path">
+                  <div class="carousel-caption movie-description">
                     <h5>First slide label</h5>
-                    <p>
-                      Some representative placeholder content for the first
-                      slide.
-                    </p>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                  <img src="https://wallpapercave.com/wp/wp3982534.jpg" class="d-block w-100" alt="Avengers" />
-                  <div class="carousel-caption d-none d-md-block movie-description">
-                    <h5>Second slide label</h5>
-                    <p>
-                      Some representative placeholder content for the second
-                      slide.
-                    </p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="https://wallpaper.dog/large/20493700.jpg" class="d-block w-100" alt="Thor" />
-                  <div class="carousel-caption d-none d-md-block movie-description">
-                    <h5>Third slide label</h5>
-                    <p>
-                      Some representative placeholder content for the third
-                      slide.
-                    </p>
+                    <p class="d-none d-md-block">Some representative placeholder content for the first slide.</p>
                   </div>
                 </div>
               </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleDark"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleDark"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
@@ -104,7 +45,12 @@
         <div class="card">
           <div class="card-header">Categories</div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" v-for="genre in genres" :key="genre" :v-if="genres">
+            <li
+              class="list-group-item"
+              v-for="genre in genres"
+              :key="genre"
+              :v-if="genres"
+            >
               {{ genre.name }}
             </li>
           </ul>
@@ -115,25 +61,37 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "HomeView",
   computed: {
-    ...mapState(['genres'])
+    ...mapState(["genres", "movies"]),
+    ...mapGetters(["getFirstThreeMovies"])
   },
   mounted() {
     this.$store.dispatch("fetchGenres");
-  }
+    this.$store.dispatch("fetchTopMovies");
+  },
 };
 </script>
 
 
-<style lang="scss">
-@import '@/assets/styles/_variables.scss';
-.movie-description{
+<style lang="scss" scoped>
+@import "@/assets/styles/_variables.scss";
+.movie-description {
   background-color: rgba($color: $secondary, $alpha: 0.4);
   padding: 1rem;
   border-radius: 15px 0 15px 0;
 }
+
+.fill {
+    overflow: hidden;
+    > img {
+      flex-shrink: 0;
+      min-width: 100%;
+      min-height: 100%;
+    }
+}
+
 </style>
