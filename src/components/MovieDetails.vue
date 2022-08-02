@@ -1,12 +1,12 @@
 <template>
-  <div class="hello">
+  <div class="alert alert-success" role="alert">
     <h1>{{msg}}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'MovieDetails',
   props: {
     msg: String
   }

@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import API_KEY from './api_key'
+import { API_KEY } from './api_key'
 import axios from 'axios'
 
 const api = axios.create({
