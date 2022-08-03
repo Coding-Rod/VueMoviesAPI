@@ -8,7 +8,9 @@
         :key="genre"
         :v-if="genres"
       >
-        {{ genre.name }}
+        <router-link :to="'/filter/'+genre.id">
+          {{ genre.name }}
+        </router-link>
       </li>
     </ul>
   </div>

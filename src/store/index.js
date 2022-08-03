@@ -14,6 +14,7 @@ const api = axios.create({
 
 export default createStore({
   state: {
+    top_movies: [],
     movies: [],
     movie: {},
     genres: [],
@@ -21,7 +22,7 @@ export default createStore({
   },
   getters: {
     getFirstThreeMovies: state => {
-      return Array.from(state.movies)
+      return Array.from(state.top_movies)
         .filter(movie => movie.original_language === "en")
         .slice(0, 3);
     },
@@ -29,6 +30,9 @@ export default createStore({
   mutations: {
     SET_GENRES: (state, genres) => {
       state.genres = genres;
+    },
+    SET_TOP_MOVIES: (state, movies) => {
+      state.top_movies = movies;
     },
     SET_MOVIES: (state, movies) => {
       state.movies = movies;
@@ -48,6 +52,20 @@ export default createStore({
     async fetchTopMovies({ commit }) {
       try {
         const data = await api('movie/top_rated');
+        commit('SET_TOP_MOVIES', data.data.results)
+        }
+        catch (error) {
+            alert(error);
+            console.log(error);
+        }
+    },
+    async moviesSearch({ commit }, query) {
+      try {
+        const data = await api('search/movie', {
+          params: {
+            query: query,
+          }
+        });
         commit('SET_MOVIES', data.data.results)
         }
         catch (error) {
