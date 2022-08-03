@@ -4,7 +4,7 @@
       <div class="col-12 col-lg-3 my-2" v-for="movie in movies" :key="movie">
         <div class="card text-white">
           <img
-            class="card-img"
+            class="card-img img-fluid card-img-top"
             :src="movie.poster_path?'https://image.tmdb.org/t/p/w500' + movie.poster_path: 'https://protkd.com/wp-content/uploads/2017/04/default-image.jpg'"
             alt="Card image"
           />
@@ -76,5 +76,11 @@ export default {
       transition: opacity 0.7s ease-out, transform 0.35s ease-out;
     }
   }
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
 }
 </style>
