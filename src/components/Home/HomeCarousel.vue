@@ -2,10 +2,10 @@
   <div class="container-fluid">
     <div class="row mb-4 mb-lg-2">
       <div class="col-9 text-left">
-        <h2>Trends</h2>
+        <h2>Top Movies</h2>
       </div>
       <div class="col-3">
-        <router-link class="btn btn-primary" to="/trends"
+        <router-link class="btn btn-primary" to="/top_movies"
           >Discover more
         </router-link>
       </div>
