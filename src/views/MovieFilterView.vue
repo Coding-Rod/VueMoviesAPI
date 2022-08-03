@@ -2,6 +2,7 @@
   <div class="about">
     <back-button />
     <h1>Top Movies</h1>
+    <span>{{ $store.state.log}}</span>
     <Pagination :movies="movies" />
   </div>
 </template>
