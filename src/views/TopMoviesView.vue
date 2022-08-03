@@ -1,18 +1,17 @@
 <template>
   <div class="about">
-    <button class="btn btn-primary" @click="goBack">
-      <i class="bi bi-arrow-left"></i>
-    </button>
+    <back-button />
     <h1>Top Movies</h1>
+    <span></span>
   </div>
 </template>
 
 <script>
+import BackButton from '@/components/template/BackButton.vue';
+
   export default {
-    methods: {
-      goBack() {
-        this.$router.go(-1)
-      }
-    }
+    components: {
+      BackButton,
+    },
   }
 </script>

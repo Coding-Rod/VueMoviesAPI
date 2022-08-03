@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+// TODO: Add links
 const routes = [
   {
     path: '/',
@@ -11,6 +12,11 @@ const routes = [
     path: '/top_movies',
     name: 'top_movies',
     component: () => import('../views/TopMoviesView.vue')
+  },
+  {
+    path: '/movie',
+    name: 'movie',
+    component: () => import('../views/MovieDetailsView.vue')
   }
 ]
 
