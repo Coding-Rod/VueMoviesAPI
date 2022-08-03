@@ -40,6 +40,9 @@ export default createStore({
     },
     SET_LOG: (state, log) => {
       state.log = log;
+    },
+    SET_MOVIE: (state, movie) => {
+      state.movie = movie;
     }
   },
   actions: {
@@ -73,6 +76,18 @@ export default createStore({
           }
         });
         commit('SET_MOVIES', data.data.results)
+        }
+        catch (error) {
+            alert(error);
+            console.log(error);
+        }
+    },
+    async movieDetails({ commit }, id) {
+      try {
+        const data = await api('movie/' + id);
+        const similar = await api('movie/' + id + '/similar');
+        commit('SET_MOVIE', data.data)
+        commit('SET_MOVIES', similar.data.results)
         }
         catch (error) {
             alert(error);
