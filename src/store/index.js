@@ -21,7 +21,9 @@ export default createStore({
   },
   getters: {
     getFirstThreeMovies: state => {
-      return Array.from(state.movies).filter(movie => movie.original_language === "en").slice(0, 3);
+      return Array.from(state.movies)
+        .filter(movie => movie.original_language === "en")
+        .slice(0, 3);
     },
   },
   mutations: {
