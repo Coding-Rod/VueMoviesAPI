@@ -1,8 +1,7 @@
 <template>
   <div class="about">
     <back-button />
-    <h1>Top Movies</h1>
-    <span>{{ $store.state.log}}</span>
+    <h1>Results for: {{$route.query.query}}</h1>
     <Pagination :movies="movies" />
   </div>
 </template>
