@@ -19,6 +19,7 @@ export default createStore({
     movie: {},
     genres: [],
     data: {},
+    log: {}
   },
   getters: {
     getFirstThreeMovies: state => {
@@ -36,6 +37,9 @@ export default createStore({
     },
     SET_MOVIES: (state, movies) => {
       state.movies = movies;
+    },
+    SET_LOG: (state, log) => {
+      state.log = log;
     }
   },
   actions: {
@@ -61,9 +65,11 @@ export default createStore({
     },
     async moviesSearch({ commit }, query) {
       try {
+        commit('SET_LOG', query );
         const data = await api('search/movie', {
           params: {
-            query: query,
+            query: query.query,
+            page: query.page
           }
         });
         commit('SET_MOVIES', data.data.results)

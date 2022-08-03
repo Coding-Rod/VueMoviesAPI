@@ -6,15 +6,22 @@
       placeholder="Search"
       aria-label="Search"
       aria-describedby="search-addon"
+      v-model="search"
     />
-    <span class="input-group-text border-0" id="search-addon">
+    <router-link :to="'/filter?query='+search" class="input-group-text border-0" id="search-addon">
       <i class="bi bi-search"></i>
-    </span>
+    </router-link>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      search: "",
+    };
+  },
+};
 </script>
 
 <style>
