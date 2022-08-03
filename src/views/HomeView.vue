@@ -2,21 +2,11 @@
   <div class="container">
     <router-view />
     <div class="row">
-      <home-carousel :movies="getFirstThreeMovies" :screenwidth="screenwidth" />
+      <main class="col-12 col-lg-9">
+        <home-carousel :movies="getFirstThreeMovies" :screenwidth="screenwidth" />
+      </main>
       <aside class="col-12 col-lg-3 mt-3 mt-lg-0">
-        <div class="card">
-          <div class="card-header">Categories</div>
-          <ul class="list-group list-group-flush">
-            <li
-              class="list-group-item"
-              v-for="genre in genres"
-              :key="genre"
-              :v-if="genres"
-            >
-              {{ genre.name }}
-            </li>
-          </ul>
-        </div>
+        <home-genres :genres="genres" />
       </aside>
     </div>
   </div>
@@ -25,6 +15,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import HomeCarousel from "@/components/Home/HomeCarousel.vue";
+import HomeGenres from "@/components/Home/HomeGenres.vue";
 
 export default {
   name: "HomeView",
@@ -34,7 +25,8 @@ export default {
     }
   },
   components:{
-    HomeCarousel
+    HomeCarousel,
+    HomeGenres
   },
   computed: {
     ...mapState(["genres"]),
