@@ -5,9 +5,9 @@
       <main class="col-12 col-lg-9">
         <home-carousel :movies="getFirstThreeMovies" :screenwidth="screenwidth" />
       </main>
-      <!-- <aside class="col-12 col-lg-3 mt-3 mt-lg-0">
+      <aside class="col-12 col-lg-3 mt-3 mt-lg-0">
         <home-genres :genres="genres" />
-      </aside> -->
+      </aside>
     </div>
   </div>
 </template>
