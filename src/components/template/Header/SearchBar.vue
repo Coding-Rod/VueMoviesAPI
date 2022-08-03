@@ -8,9 +8,9 @@
       aria-describedby="search-addon"
       v-model="search"
     />
-    <router-link :to="'/filter?query='+search" class="input-group-text border-0" id="search-addon">
+    <button @click="searchMovie" class="input-group-text border-0" id="search-addon">
       <i class="bi bi-search"></i>
-    </router-link>
+    </button>
   </div>
 </template>
 
@@ -20,6 +20,17 @@ export default {
     return {
       search: "",
     };
+  },
+  methods: {
+    async searchMovie() {
+      await this.$store.dispatch("moviesSearch", this.$route.query);
+      await this.$router.push({
+        path: "/filter",
+        query: {
+          query: this.search,
+        },
+      });
+    },
   },
 };
 </script>

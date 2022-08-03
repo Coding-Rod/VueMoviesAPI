@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <span>{{$store.state.log}}</span>
     <back-button />
     <h1>Top Movies</h1>
     <Pagination :movies="movies" />

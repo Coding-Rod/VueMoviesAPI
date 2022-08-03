@@ -6,7 +6,6 @@
       </div>
       <div class="row">
         <div class="col">
-          <p>{{ $route.params.id }}</p>
           <h1>{{ movie.original_title }}</h1>
         </div>
       </div>
