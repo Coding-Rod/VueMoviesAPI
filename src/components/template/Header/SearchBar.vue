@@ -2,13 +2,13 @@
   <div class="input-group rounded">
     <input
       type="search"
-      class="form-control rounded"
+      class="form-control py-2 border-0"
       placeholder="Search"
       aria-label="Search"
       aria-describedby="search-addon"
       v-model="search"
     />
-    <button @click="searchMovie" class="input-group-text border-0" id="search-addon">
+    <button @click="searchMovie" class="input-group-text border-0 btn bg-white" id="search-addon">
       <i class="bi bi-search"></i>
     </button>
   </div>
@@ -28,6 +28,7 @@ export default {
         path: "/filter",
         query: {
           query: this.search,
+          page: 1,
         },
       });
     },

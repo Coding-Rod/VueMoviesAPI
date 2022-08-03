@@ -69,12 +69,7 @@ export default createStore({
     async moviesSearch({ commit }, query) {
       try {
         commit('SET_LOG', query );
-        const data = await api('search/movie', {
-          params: {
-            query: query.query,
-            page: query.page
-          }
-        });
+        const data = await api('search/movie?query='+query.query+'&page='+query.page);
         commit('SET_MOVIES', data.data.results)
         }
         catch (error) {
