@@ -5,14 +5,15 @@
         <div class="card text-white">
           <img
             class="card-img"
-            :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            :src="movie.poster_path?'https://image.tmdb.org/t/p/w500' + movie.poster_path: 'https://protkd.com/wp-content/uploads/2017/04/default-image.jpg'"
+            alt="Card image"
           />
           <div class="card-img-overlay">
             <h2 class="card-title"> {{ movie.original_title }}</h2>
             <p class="card-text">
               {{
-                movie.overview.length > 200
-                  ? movie.overview.substring(0, 200) + "..."
+                movie.overview.length > 100
+                  ? movie.overview.substring(0, 100) + "..."
                   : movie.overview
             }}
             </p>

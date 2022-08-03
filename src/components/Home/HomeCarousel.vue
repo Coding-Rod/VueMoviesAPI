@@ -96,18 +96,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
+@import "@/assets/styles/_helpers.scss";
+
 .movie-description {
   background-color: rgba($color: $white, $alpha: 0.4);
   padding: 1rem;
   border-radius: 15px 0 15px 0;
-}
-
-.fill {
-  overflow: hidden;
-  > img {
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%;
-  }
 }
 </style>
