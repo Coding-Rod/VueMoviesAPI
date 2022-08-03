@@ -8,7 +8,10 @@
         :key="genre"
         :v-if="genres"
       >
-        <router-link :to="'/filter/'+genre.id" class="text-center text-decoration-none text-dark">
+        <router-link
+          :to="'/genre/' + genre.name + '?id=' + genre.id"
+          class="text-center text-decoration-none text-dark"
+        >
           {{ genre.name }}
         </router-link>
       </li>
@@ -17,10 +20,12 @@
 </template>
 
 <script>
+
 export default {
-    props: {
-        genres: {},
-    },
+  props: {
+    genres: {},
+  },
+  
 };
 </script>
 

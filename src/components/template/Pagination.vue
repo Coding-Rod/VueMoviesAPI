@@ -17,7 +17,7 @@
                   : movie.overview
             }}
             </p>
-            <router-link :to="'/movie/'+movie.id" class="btn btn-outline-light" href="#">Find out</router-link>
+            <router-link :to="'/movie/'+movie.id" class="btn btn-outline-light">Find out</router-link>
           </div>
         </div>
       </div>

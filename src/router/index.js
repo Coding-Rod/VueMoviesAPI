@@ -22,6 +22,11 @@ const routes = [
     path: '/filter',
     name: 'filter',
     component: () => import('../views/MovieFilterView.vue')
+  },
+  {
+    path: '/genre/:genre',
+    name: 'genre',
+    component: () => import('../views/MovieGenreView.vue')
   }
 ]
 

@@ -50,32 +50,32 @@ export default createStore({
       try {
         const data = await api('genre/movie/list');
         commit('SET_GENRES', data.data.genres)
-        }
-        catch (error) {
-            alert(error);
-            console.log(error);
-        }
+      }
+      catch (error) {
+        alert(error);
+        console.log(error);
+      }
     },
     async fetchTopMovies({ commit }) {
       try {
         const data = await api('movie/top_rated');
         commit('SET_TOP_MOVIES', data.data.results)
-        }
-        catch (error) {
-            alert(error);
-            console.log(error);
-        }
+      }
+      catch (error) {
+        alert(error);
+        console.log(error);
+      }
     },
     async moviesSearch({ commit }, query) {
       try {
-        commit('SET_LOG', query );
-        const data = await api('search/movie?query='+query.query+'&page='+query.page);
+        commit('SET_LOG', query);
+        const data = await api('search/movie?query=' + query.query + '&page=' + query.page);
         commit('SET_MOVIES', data.data.results)
-        }
-        catch (error) {
-            alert(error);
-            console.log(error);
-        }
+      }
+      catch (error) {
+        alert(error);
+        console.log(error);
+      }
     },
     async movieDetails({ commit }, id) {
       try {
@@ -83,11 +83,22 @@ export default createStore({
         const similar = await api('movie/' + id + '/similar');
         commit('SET_MOVIE', data.data)
         commit('SET_MOVIES', similar.data.results)
-        }
-        catch (error) {
-            alert(error);
-            console.log(error);
-        }
-    }
+      }
+      catch (error) {
+        alert(error);
+        console.log(error);
+      }
+    },
+    async getMoviesByGenre({ commit }, id) {
+      try {
+        commit('SET_LOG', id);
+        const data = await api('discover/movie?with_genres=' + id);
+        commit('SET_MOVIES', data.data.results)
+      }
+      catch (error) {
+        alert(error);
+        console.log(error);
+      }
+    },
   },
 })

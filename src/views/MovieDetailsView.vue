@@ -10,16 +10,21 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-8 fill">
+        <div class="col-12 col-lg-8 fill">
           <img
-              :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path"
-              :alt="movie.original_title"
-              class="img-fluid"
-            />
+            :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path"
+            :alt="movie.original_title"
+            class="img-fluid"
+          />
         </div>
-        <div class="col-4">
+        <div class="col">
           <h3>Genres</h3>
-            <span v-for="genre in movie.genres" :key="genre" class="badge rounded-pill text-bg-primary">{{genre.name}}</span>
+          <span
+            v-for="genre in movie.genres"
+            :key="genre"
+            class="badge rounded-pill text-bg-primary"
+            >{{ genre.name }}</span
+          >
         </div>
       </div>
       <div class="row mt-4">
@@ -29,6 +34,7 @@
         </div>
       </div>
     </div>
+    <span>{{id}}</span>
   </div>
 </template>
 
@@ -39,11 +45,16 @@ import { mapState } from "vuex";
 
 export default {
   name: "MovieDetails",
+  data() {
+    return {
+      id: this.$route.params.id,
+    }
+  },
   components: {
     BackButton,
-    Pagination
+    Pagination,
   },
-  computed:{
+  computed: {
     ...mapState(["movie", "movies"]),
   },
   mounted() {
