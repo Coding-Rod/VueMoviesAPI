@@ -97,7 +97,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/_variables.scss";
 .movie-description {
-  background-color: rgba($color: $secondary, $alpha: 0.4);
+  background-color: rgba($color: $white, $alpha: 0.4);
   padding: 1rem;
   border-radius: 15px 0 15px 0;
 }
