@@ -1,16 +1,19 @@
 <template>
   <div class="alert alert-success" role="alert">
+    <back-button />
     <h1>{{msg}}</h1>
-    <router-link to="/top_movies">Movies</router-link>
+    <p>{{$route.params.id}}</p>
   </div>
 </template>
 
 <script>
+import BackButton from '@/components/template/BackButton.vue';
+
 export default {
   name: 'MovieDetails',
-  props: {
-    msg: String
-  }
+  components: {
+    BackButton,
+  },
 }
 </script>
 

@@ -40,7 +40,7 @@
         </div>
 
         <div class="carousel-inner">
-          <div
+          <router-link :to="'/movie/'+movie.id"
             class="carousel-item fill"
             :class="index == 0 ? 'active' : ''"
             v-for="(movie, index) in movies"
@@ -60,7 +60,7 @@
               <h5>{{ movie.original_title }}</h5>
               <p>{{ movie.overview }}</p>
             </div>
-          </div>
+          </router-link>
         </div>
         <button
           class="carousel-control-prev"

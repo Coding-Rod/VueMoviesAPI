@@ -14,9 +14,14 @@ const routes = [
     component: () => import('../views/TopMoviesView.vue')
   },
   {
-    path: '/movie',
+    path: '/movie/:id',
     name: 'movie',
     component: () => import('../views/MovieDetailsView.vue')
+  },
+  {
+    path: '/filter/:query',
+    name: 'filter',
+    component: () => import('../views/MovieFilterView.vue')
   }
 ]
 
