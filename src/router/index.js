@@ -1,7 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-// TODO: Add links
+function scrollBehavior () {
+  return { x: 0, y: 0 }
+}
+
 const routes = [
   {
     path: '/',
@@ -16,7 +19,8 @@ const routes = [
   {
     path: '/movie/:id',
     name: 'movie',
-    component: () => import('../views/MovieDetailsView.vue')
+    component: () => import('../views/MovieDetailsView.vue'),
+    props: true,
   },
   {
     path: '/filter',
@@ -27,11 +31,21 @@ const routes = [
     path: '/genre/:genre',
     name: 'genre',
     component: () => import('../views/MovieGenreView.vue')
-  }
+  },
+  // {
+  //   path: "/404",
+  //   name: 'not_found',
+  //   component: () => import('../views/NotFoundView.vue')
+  // },
+  // {
+  //   path: "/:pathMatch(.*)*",
+  //   redirect: '/404'
+  // }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
+  scrollBehavior,
   routes
 })
 

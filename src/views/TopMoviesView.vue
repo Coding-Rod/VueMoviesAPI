@@ -1,8 +1,12 @@
 <template>
-  <div class="about">
+  <div class="about container">
+    <div class="row">
+      <div class="col">
     <back-button />
     <h1>Top Movies</h1>
     <Pagination :movies="top_movies" />
+      </div>
+    </div>
   </div>
 </template>
 

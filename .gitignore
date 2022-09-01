@@ -23,3 +23,8 @@ pnpm-debug.log*
 *.sw?
 src/store/api_key.js
 src/components/MovieDetail
+# Cordova (added by vue-cli-plugin-cordova-simple)
+platforms
+plugins
+www
+

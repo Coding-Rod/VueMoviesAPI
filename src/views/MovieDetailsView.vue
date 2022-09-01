@@ -34,7 +34,6 @@
         </div>
       </div>
     </div>
-    <span>{{id}}</span>
   </div>
 </template>
 
@@ -57,8 +56,15 @@ export default {
   computed: {
     ...mapState(["movie", "movies"]),
   },
-  mounted() {
+  beforeMount() {
     this.$store.dispatch("movieDetails", this.$route.params.id);
+  },
+  watch: {
+    $route() {
+      if (this.$route.params.id !== this.id || this.$route.params.id !== this.movie.id) {
+        this.$store.dispatch("movieDetails", this.$route.params.id);
+      }
+    },
   },
 };
 </script>

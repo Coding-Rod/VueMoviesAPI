@@ -17,7 +17,7 @@
                   : movie.overview
             }}
             </p>
-            <router-link :to="'/movie/'+movie.id" class="btn btn-outline-light">Find out</router-link>
+            <a @click="change_movie(movie)" :key='$route.fullPath' class="btn btn-outline-light">Find out</a>
           </div>
         </div>
       </div>
@@ -31,6 +31,16 @@ export default {
     movies: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    change_movie(movie) {
+      this.$router.push({
+        name: "movie",
+        params: {
+          id: movie.id,
+        },
+      });
     },
   },
 };
