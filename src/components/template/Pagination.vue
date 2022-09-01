@@ -1,6 +1,11 @@
 <template>
   <div class="container">
     <div class="row">
+      <div class="col">
+        <span>{{ screenwidth }}</span>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-12 col-lg-3 my-2" v-for="movie in movies" :key="movie">
         <div class="card text-white">
           <img
@@ -9,8 +14,9 @@
             alt="Card image"
           />
           <div class="card-img-overlay">
-            <h2 class="card-title"> {{ movie.original_title }}</h2>
-            <p class="card-text">
+            <h2 v-if="screenwidth>=550" class="card-title"> {{ movie.original_title }}</h2>
+            <h5 v-else class="card-title"> {{ movie.original_title }}</h5>
+            <p v-if="screenwidth>=550" class="card-text">
               {{
                 movie.overview.length > 100
                   ? movie.overview.substring(0, 100) + "..."
@@ -27,6 +33,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      screenwidth: 0,
+    }
+  },
   props: {
     movies: {
       type: Array,
@@ -42,6 +53,12 @@ export default {
         },
       });
     },
+  },
+  mounted() {
+    this.screenwidth = parseInt(window.screen.availWidth);
+    window.addEventListener("resize", () => {
+      this.screenwidth = parseInt(window.screen.availWidth);
+    });
   },
 };
 </script>

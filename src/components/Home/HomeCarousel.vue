@@ -58,7 +58,14 @@
             />
             <div class="carousel-caption movie-description">
               <h5>{{ movie.original_title }}</h5>
-              <p>{{ movie.overview }}</p>
+              <p v-if="screenwidth>=320">
+                {{
+                  screenwidth >= 550
+                  ? screenwidth >= 763 ? movie.overview
+                    : short_txt(movie.overview,250)
+                  : short_txt(movie.overview,100)
+              }}
+              </p>
             </div>
           </router-link>
         </div>
@@ -90,6 +97,11 @@ export default {
   props: {
     movies: {},
     screenwidth: 0,
+  },
+  methods: {
+    short_txt(txt, limit) {
+      return txt.length > limit ? txt.substring(0, limit) + "..." : txt;
+    },
   },
 };
 </script>
