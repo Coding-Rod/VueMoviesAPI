@@ -61,7 +61,7 @@
               <p v-if="screenwidth>=320">
                 {{
                   screenwidth >= 550
-                  ? screenwidth >= 763 ? movie.overview
+                  ? screenwidth >= 991 ? movie.overview
                     : short_txt(movie.overview,250)
                   : short_txt(movie.overview,100)
               }}
@@ -100,7 +100,9 @@ export default {
   },
   methods: {
     short_txt(txt, limit) {
-      return txt.length > limit ? txt.substring(0, limit) + "..." : txt;
+      return txt.length > limit 
+              ? txt.substring(0, limit) + "..." 
+              : txt;
     },
   },
 };
