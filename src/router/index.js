@@ -32,15 +32,10 @@ const routes = [
     name: 'genre',
     component: () => import('../views/MovieGenreView.vue')
   },
-  // {
-  //   path: "/404",
-  //   name: 'not_found',
-  //   component: () => import('../views/NotFoundView.vue')
-  // },
-  // {
-  //   path: "/:pathMatch(.*)*",
-  //   redirect: '/404'
-  // }
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: '/'
+  }
 ]
 
 const router = createRouter({

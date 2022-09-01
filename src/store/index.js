@@ -1,8 +1,8 @@
 import { createStore } from 'vuex'
-// import router from '@/router';
+import { API_KEY } from './api_key.js';
+import router from '@/router';
 import axios from 'axios'
 
-const API_KEY = "d359d19b61a015f8252684dc30d8eb2a";
 const api = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
   headers: {
@@ -53,7 +53,7 @@ export default createStore({
         commit('SET_GENRES', data.data.genres)
       }
       catch (error) {
-        // router.push('/404');
+        router.push('/');
         console.log(error);
       }
     },
@@ -63,7 +63,7 @@ export default createStore({
         commit('SET_TOP_MOVIES', data.data.results)
       }
       catch (error) {
-        // router.push('/404');
+        router.push('/');
         console.log(error);
       }
     },
@@ -74,7 +74,7 @@ export default createStore({
         commit('SET_MOVIES', data.data.results)
       }
       catch (error) {
-        // router.push('/404');
+        router.push('/');
         console.log(error);
       }
     },
@@ -86,7 +86,7 @@ export default createStore({
         commit('SET_MOVIES', similar.data.results)
       }
       catch (error) {
-        // router.push('/404');
+        router.push('/');
         console.log(error);
       }
     },
@@ -97,7 +97,7 @@ export default createStore({
         commit('SET_MOVIES', data.data.results)
       }
       catch (error) {
-        // router.push('/404');
+        router.push('/');
         console.log(error);
       }
     },
